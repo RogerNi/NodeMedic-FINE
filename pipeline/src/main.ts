@@ -129,6 +129,9 @@ async function runPipeline(
         taskList = ['setupPackage', 'getEntryPoints', 'runNonInstrumented', 
             'runInstrumented', 'setSinkType', 'trivialExploit', 'checkExploit',
             'smt', 'checkExploit'];
+    } else if (mode == 'prov') {
+        taskList = ['setupPackage', 'getEntryPoints', 'runNonInstrumented', 
+            'runInstrumented'];
     }
     else {
         taskList = ['downloadCount', 'setupPackage', 'filterByMain',
@@ -206,7 +209,7 @@ async function main() {
         .option('-t, --tmp-dir <path>', 'path to store temporary files')
         .option('-s, --start-index <int>', 'package list index to start gathering from (overrides checkpoint)')
         .option('-e, --end-index <int>', 'maximum package list index to gather from')
-        .option('-m, --mode <string>', '"gather", "analysis" or "full"')
+        .option('-m, --mode <string>', '"gather", "analysis", "prov" or "full"')
         .option('-a, --package <string>', 'analyze the selected package name@version')
         .option('-z, --z3-path <path>', 'path to the Z3 solver binary')
         .option('--only-cache-included', 'only cache packages that pass the gathering filters')
